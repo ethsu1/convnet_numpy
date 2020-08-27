@@ -35,7 +35,7 @@ Smiling dataset was parsed from Getty Images. Then images were cropped to only b
 using the face_recognition library that was built using dlib's state of the art face recognition.
 
 At the end of training, my model was getting 86% accuracy. You can try the smile detection model at ____
-The code for UI is [here.](https://github.com/ethsu1/smileAI)
+The code for the UI is [here.](https://github.com/ethsu1/smileAI)
 
 
 ![alt text](https://github.com/ethsu1/convnet_numpy/blob/master/results/train_loss.png)
