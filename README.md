@@ -18,7 +18,7 @@ prediction = convnet.forward(data)
 Backpropagation:
 loss, correct, softmax = cross_entropy(prediction, onehot_labels)
 
-gradient = convnet.backprop(lr, softmax)
+gradient = convnet.backprop(learing_rate, softmax)
 
 # Testing: #
 For testing my implementation of a convolutional neural network and its end-to-end training, I wrote unit tests and compared them to Pytorch outputs. By comparing my outputs and gradients to the Pytorch's outputs and gradients, I also gained a better a sense of how gradients flow in Pytorch and how to debug a Pytorch model.
