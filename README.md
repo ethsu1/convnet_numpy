@@ -20,9 +20,10 @@ loss, correct, softmax = cross_entropy(prediction, onehot_labels)
 
 gradient = convnet.backprop(lr, softmax)
 
-I wrote the neural network using numpy and tested my implementations against Pytorch to ensure my layers were
-doing the right operations. From this project, I gained a much deeper understanding of neural networks, specifically convolutional
-networks.
+# Testing: #
+For testing my implementation of a convolutional neural network and its end-to-end training, I wrote unit tests and compared them to Pytorch outputs. By comparing my outputs and gradients to the Pytorch's outputs and gradients, I also gained a better a sense of how gradients flow in Pytorch and how to debug a Pytorch model.
+
+You can run the tests via python test.py
 
 
 I wanted to display my results with a more user interactive method, so I decided to create and train the network on
@@ -32,5 +33,4 @@ Smiling dataset was parsed from Getty Images. Then images were cropped to only b
 using the face_recognition library that was built using dlib's state of the art face recognition.
 
 
-For testing my implementation of a convolutional neural network and its end-to-end training, I wrote unit tests and compared them to Pytorch outputs. By comparing my outputs and gradients to the Pytorch's outputs and gradients, I also gained a better a sense of how gradients flow in Pytorch and how to debug a Pytorch model.
 
