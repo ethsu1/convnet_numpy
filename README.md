@@ -37,8 +37,8 @@ using the face_recognition library that was built using dlib's state of the art 
 At the end of training, my model was getting 86% accuracy. You can try the smile detection model at ____
 
 
-![alt text](https://github.com/ethsu1/convnet_numpy/tree/master/resultstrain_loss.png)
-![alt text](https://github.com/ethsu1/convnet_numpy/tree/master/results/train_accuracy.png)
+![alt text](https://github.com/ethsu1/convnet_numpy/blob/master/results/train_loss.png)
+![alt text](https://github.com/ethsu1/convnet_numpy/blob/master/results/train_accuracy.png)
 
 
 
