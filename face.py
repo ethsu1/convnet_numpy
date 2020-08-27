@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 from data_parse import *
 import math
 EPOCH = 20
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 LR = 0.001
 model = [convolution(num_filters=25, kernel_size=3,padding=1,stride=1),
 relu(),
@@ -23,11 +23,13 @@ fc(input_dim=50*11*11, output_dim=500),
 relu(),
 fc(input_dim=500, output_dim=2)
 ]
-data, labels, onehot_labels = parse_images(os.getcwd()+"/smiles")
+data, labels, onehot_labels = load_data()
 convnet = ConvNet(model)
 convnet.forward(data[0:1])
 
-
+epoch_list = []
+loss_list = []
+acc_list = []
 batches = math.ceil(len(data)/BATCH_SIZE)
 for epoch in range(EPOCH):
 	running_loss = 0
@@ -47,11 +49,17 @@ for epoch in range(EPOCH):
 		c.backward(softmax, batch_labels_onehot, LR)
 
 
-	epoch_list.append(epoch)
 	loss_list.append(running_loss)
 	acc_list.append(num_correct/len(labels))
 	print("Accuracy: {}".format(num_correct/len(labels))) 
 	print("Epoch: {} Loss: {}".format(epoch, running_loss))
+
+fig1 = plt.figure()
+plt.plot(loss_list, label="Train loss")
+plt.show()
+fig2 = plt.figure()
+plt.plot(acc_list, label="Train Accuracy")
+plt.show()
 
 
 

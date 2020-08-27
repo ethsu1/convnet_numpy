@@ -17,7 +17,6 @@ from mnist import MNIST
 from torchvision import datasets, transforms
 from convnet import *
 from cifar10_web import *
-from tensorflow import keras
 from flat import *
 
 class testConvolution(unittest.TestCase):
@@ -954,20 +953,6 @@ class testConvolution(unittest.TestCase):
 
 		np.testing.assert_allclose(gradient, inputs.grad)
 
-	"""def test_relu_gradient(self):
-		'''
-		testing the gradient of relu activation
-		'''
-
-		data = np.random.normal(0,1,size=(10,))
-		layer = relu()
-		output = layer.forward(data)
-		gradient_loss = layer.backprop(output)
-		relu_torch = torch.nn.ReLU()
-		inputs = torch.from_numpy(data).double().detach().requires_grad_(True)
-		expected_output = relu_torch(inputs)
-		expected_output.sum().backward()
-		np.testing.assert_allclose(gradient_loss, inputs.grad.detach().numpy())"""
 	
 	def test_shallow_net_relu_backprop(self):
 		'''
@@ -1012,7 +997,7 @@ class testConvolution(unittest.TestCase):
 		gradient_loss_fc2, grad_weights2, grad_bias2 = fc2.backprop(lr,gradient_loss)
 		gradient_loss_relu = layer_relu.backprop(gradient_loss_fc2)
 		gradient_loss_fc1, grad_weights1, grad_bias1 = fc1.backprop(lr, gradient_loss_relu)
-		#gradient_loss = flatten.backprop(gradient_loss_fc1)
+		gradient_loss_flat = flatten.backprop(gradient_loss_fc1)
 
 
 		#pytorch
@@ -1055,7 +1040,7 @@ class testConvolution(unittest.TestCase):
 		optimizer.step()
 
 		#np.testing.assert_allclose(gradient_loss_fc, inputs.grad)
-		np.testing.assert_allclose(gradient_loss, net.after_softmax.grad)
+		np.testing.assert_allclose(gradient_loss, net.after_softmax.grad, rtol=0.001, atol=0.001)
 		#np.testing.assert_allclose(gradient_loss_relu, net.after_relu_grad.grad)
 		#ensure original weights and biases are actually different for fully connected layers
 		try: 
@@ -1084,7 +1069,7 @@ class testConvolution(unittest.TestCase):
 		np.testing.assert_allclose(grad_weights2, net.linear2.weight.grad.detach().numpy().T)
 		np.testing.assert_allclose(grad_bias2, net.linear2.bias.grad.detach().numpy())
 		
-		np.testing.assert_allclose(gradient_loss_fc1, inputs.grad)
+		np.testing.assert_allclose(gradient_loss_flat, inputs.grad)
 
 
 
@@ -1491,7 +1476,7 @@ class testConvolution(unittest.TestCase):
 
 				#input gradient is accumulated instead of reset to (because it is not part of the model parameters)
 				np.testing.assert_allclose(gradient, batch_inputs_pytorch.grad, rtol=0.1, atol=0.1)
-				"""print("Done with batch {}".format(j))
+				'''print("Done with batch {}".format(j))
 				print("Correct: {}".format(correct))
 				print("Expected correct: {}".format(expected_correct))
 				print("batch loss: {}".format(loss))
@@ -1502,7 +1487,7 @@ class testConvolution(unittest.TestCase):
 			print("Accuracy: {}".format(num_correct/len(train_set_labels))) 
 			print("Expected Accuracy: {}".format(num_expected_correct/len(train_set_labels)))
 			print("Epoch: {} Loss: {}".format(epoch, running_loss))
-			print("Epoch: {} Expected Loss: {}".format(epoch, expected_running_loss))"""
+			print("Epoch: {} Expected Loss: {}".format(epoch, expected_running_loss))'''
 
 	def test_convnet_training_color(self):
 		'''
@@ -1602,7 +1587,7 @@ class testConvolution(unittest.TestCase):
 
 				#input gradient is accumulated instead of reset to (because it is not part of the model parameters)
 				np.testing.assert_allclose(gradient, batch_inputs_pytorch.grad, rtol=0.1, atol=0.1)
-				"""print("Done with batch {}".format(j))
+				'''print("Done with batch {}".format(j))
 				print("Correct: {}".format(correct))
 				print("Expected correct: {}".format(expected_correct))
 				print("batch loss: {}".format(loss))
@@ -1613,7 +1598,7 @@ class testConvolution(unittest.TestCase):
 			print("Accuracy: {}".format(num_correct/1000)) 
 			print("Expected Accuracy: {}".format(num_expected_correct/1000))
 			print("Epoch: {} Loss: {}".format(epoch, running_loss))
-			print("Epoch: {} Expected Loss: {}".format(epoch, expected_running_loss))"""
+			print("Epoch: {} Expected Loss: {}".format(epoch, expected_running_loss))'''
 
 
 if __name__ == '__main__':
