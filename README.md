@@ -13,9 +13,11 @@ model = [convolution(num_filters=10,kernel_size=3,padding=1,stride=1,bias=True),
 convnet = ConvNet(model)
 
 Forward propagation:
+
 prediction = convnet.forward(data)
 
 Backpropagation:
+
 loss, correct, softmax = cross_entropy(prediction, onehot_labels)
 
 gradient = convnet.backprop(learing_rate, softmax)
