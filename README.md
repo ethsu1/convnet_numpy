@@ -4,9 +4,10 @@ loss function is categorical cross entropy because I wanted to utilize this
 neural network and train it on a classification task. Therefore, all gradients are computed
 with respect to the categorical cross entropy loss function as of right now.
 
-How to use:
+#How to use: 
 
 Define object layers as a list:
+
 model = [convolution(num_filters=10,kernel_size=3,padding=1,stride=1,bias=True), relu(), max_pool(size=3), convolution(num_filters=10,kernel_size=3,padding=1,stride=1,bias=True),relu(), max_pool(size=3), fc(input_dim=90, output_dim=10,bias=True)]
 
 convnet = ConvNet(model)
