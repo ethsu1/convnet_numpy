@@ -4,7 +4,7 @@ loss function is categorical cross entropy because I wanted to utilize this
 neural network and train it on a classification task. Therefore, all gradients are computed
 with respect to the categorical cross entropy loss function as of right now.
 
-#How to use: 
+[How to use:]
 
 Define object layers as a list:
 
